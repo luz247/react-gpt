@@ -1,4 +1,9 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
+import { OrthographyPage, TranslatePage, TextToAudioPage, ImageGenerationPage, AudioToTextPage, AssistantPage } from "../pages";
+import { ProsConsPage } from "../pages/pros-cons/ProsConsPage";
+import { ImageTunningPage } from "../pages/image-generation/ImageTunningPage";
+import { DashboardLayout } from '../layout/DashboardLayout';
+import { ProsConsStream } from "../pages/pros-cons-stream/ProsConsStream";
 
 export const menuRoutes = [
   {
@@ -20,7 +25,7 @@ export const menuRoutes = [
     icon: "fa-solid fa-water",
     title: "Como stream",
     description: "Con stream de mensajes",
-    component: <ProsConsStreamPage />
+    component: <ProsConsStream />
   },
   {
     to: "/translate",
@@ -70,8 +75,17 @@ export const menuRoutes = [
 export const router= createBrowserRouter([
     {
         path:'/',
-        element:'',
-        children:[]
+        element:<DashboardLayout></DashboardLayout>,
+        children:[
+          ...menuRoutes.map(route=>({
+            path:route.to,
+            element:route.component
+          })),
+          {
+           path:'',
+           element:<Navigate to={menuRoutes[0].to}></Navigate>
+          }
+        ]
         
     }
 ])

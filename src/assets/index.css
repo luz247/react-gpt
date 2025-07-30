@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 html, body {
   background-color: #000000;
   color: white;
@@ -39,7 +38,7 @@ em {
 }
 
 .chat-container {
-  @apply flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-white opacity-50 h-full p-4;
+  @apply flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-white/5 h-full p-4;
 }
 
 .chat-messages {
